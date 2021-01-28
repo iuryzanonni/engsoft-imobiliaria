@@ -1,9 +1,9 @@
-import excuteQuery from '../../lib/db';
+import executeQuery from '../../lib/db';
 
 async function HandlerUser(request, response){
 	
 	try{
-		const results = await excuteQuery({
+		const results = await executeQuery({
 			query: 'SELECT * FROM users'
 
 		});
