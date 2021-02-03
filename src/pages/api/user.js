@@ -1,4 +1,4 @@
-import executeQuery from '../../database/db';
+import executeQuery from '../../database';
 
 async function HandlerUser(request, response){
 	
