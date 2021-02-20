@@ -11,7 +11,7 @@ export const getDatabaseConnector = () => {
 
   console.log("New Connection");
   cachedConnection = knex;
-  return connection;
+  return cachedConnection;
 };
 
 module.exports = getDatabaseConnector();

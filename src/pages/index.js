@@ -13,7 +13,6 @@ function Home(){
 
 function Contador(){
 	const [contador, setContador] = useState(0);
-console.log(process.env.MYSQL_HOST)
 	return(
 		<div>
 			<h2>{contador}</h2>
