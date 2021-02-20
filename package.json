@@ -18,13 +18,22 @@
   },
   "homepage": "https://github.com/iuryzanonni/engsoft-imobiliaria#readme",
   "dependencies": {
+<<<<<<< HEAD
     "dotenv": "^8.2.0",
     "knex": "^0.21.17",
     "mysql": "^2.18.1",
     "mysql2": "^2.2.5",
+=======
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/lab": "^4.0.0-alpha.57",
+    "final-form": "^4.20.1",
+>>>>>>> feat: cadastro de casas
     "next": "^10.0.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "serverless-mysql": "^1.5.4"
+    "react-final-form": "^6.5.2",
+    "react-select": "^4.1.0",
+    "serverless-mysql": "^1.5.4",
+    "styled-components": "^5.2.1"
   }
 }

@@ -1,14 +1,12 @@
-import {useState} from 'react';
+import { useState } from "react";
 
-
-function Home(){
-
-	return(
-		<div>
-			<h1>Home - Imobiliária</h1>
-			<Contador/>
-		</div>
-	);
+function Home() {
+    return (
+        <div>
+            <h1>Home - Imobiliária</h1>
+            <Contador />
+        </div>
+    );
 }
 
 function Contador(){
