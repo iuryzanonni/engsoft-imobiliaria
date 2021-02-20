@@ -1,23 +1,13 @@
 import { useState } from "react";
+import HousesTable from "./components/houses-table";
 
 function Home() {
     return (
         <div>
             <h1>Home - Imobiliária</h1>
-            <Contador />
+            <HousesTable />
         </div>
     );
-}
-
-function Contador(){
-	const [contador, setContador] = useState(0);
-	return(
-		<div>
-			<h2>{contador}</h2>
-			<button onClick={() => {setContador(contador+1)}}>Adcionar</button>
-			<button onClick={() => {setContador(0)}}>Zerar</button>
-		</div>
-	);
 }
 
 export default Home;
