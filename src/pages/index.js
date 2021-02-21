@@ -1,11 +1,11 @@
 import { useState } from "react";
-import HousesTable from "./components/houses-table";
+import House from "./components/house";
 
 function Home() {
     return (
         <div>
             <h1>Home - Imobiliária</h1>
-            <HousesTable />
+            <House/>
         </div>
     );
 }

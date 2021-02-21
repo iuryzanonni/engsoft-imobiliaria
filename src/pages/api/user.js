@@ -4,27 +4,9 @@ import database from '../../database';
 
 async function HandlerUser(request, response){
 	
-	try{
-		// const results = await executeQuery({
-		// 	query: 'SELECT * FROM users'
-
-		// });
-		const resp = await database.select('*').from('Users');
+	try{		
+		const resp = await database.select('*').from('teste').where('id',2);
 		console.log(resp);
-		// const results = [
-		// 	{
-		// 		name:"Leo",
-		// 		lastName:"Leite"
-		// 	},
-		// 	{
-		// 		name:"Lucca",
-		// 		lastName:"Miranda"
-		// 	},
-		// 	{
-		// 		name:"Savio",
-		// 		lastName:"Cabral"
-		// 	}
-		// ]
 			
 		return response.json(resp);
 
