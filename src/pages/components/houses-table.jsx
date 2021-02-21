@@ -3,6 +3,16 @@ import { useState } from "react";
 import { DataGrid, isArray } from "@material-ui/data-grid";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
+import { Fade, Grid, Typography } from "@material-ui/core";
+import { Form, Field } from "react-final-form";
+import { SelectAdapter, ToggleAdapter } from "./utils";
+import arr from "../api/types";
+import Styles from "./styles";
+import TextField from "@material-ui/core/TextField";
+
+const TextFieldAdapter = ({ input, meta, ...rest }) => (
+    <TextField {...input} {...rest} />
+);
 
 const HousesTable = ({ onSubmit, sent }) => {
     const [open, setOpen] = useState(false);
@@ -50,11 +60,46 @@ const HousesTable = ({ onSubmit, sent }) => {
         <div style={{ height: "50vh" }}>
             <DataGrid rows={rows} columns={columns} pageSize={5} />
             <Dialog
-                // onClose={handleClose}
                 aria-labelledby="simple-dialog-title"
                 open={open}
+                onClose={() => setOpen(false)}
             >
-                <p>mama</p>
+                <Styles>
+                    <Form
+                        onSubmit={onSubmit}
+                        render={({
+                            handleSubmit,
+                            form,
+                            submitting,
+                            pristine,
+                            values,
+                        }) => (
+                            <form onSubmit={handleSubmit}>
+                                <Typography variant="h2" gutterBottom>
+                                    Dados
+                                </Typography>
+                                <Grid container spacing={2}>
+                                    <Grid item xs={6} sm={6}>
+                                        <Field
+                                            name="name"
+                                            component={TextFieldAdapter}
+                                            placeholder="Nome"
+                                        />
+                                    </Grid>
+
+                                    <Grid item xs={6} sm={6}>
+                                        <Field
+                                            name="cpf"
+                                            component={TextFieldAdapter}
+                                            placeholder="CPF"
+                                            size={11}
+                                        />
+                                    </Grid>
+                                </Grid>
+                            </form>
+                        )}
+                    />
+                </Styles>
             </Dialog>
         </div>
     );
