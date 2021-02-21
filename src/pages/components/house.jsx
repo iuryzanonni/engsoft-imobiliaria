@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { Fade, Grid, Typography } from "@material-ui/core";
 import { Form, Field } from "react-final-form";
 import { SelectAdapter, ToggleAdapter } from "./utils";
-import { defaultHouse } from "../api/types";
 import arr from "../api/types";
 import Styles from "./styles";
 import TextField from "@material-ui/core/TextField";
@@ -13,14 +12,6 @@ const TextFieldAdapter = ({ input, meta, ...rest }) => (
 );
 
 const HouseForm = ({ onSubmit, sent }) => {
-    const [house, setHouse] = useState(defaultHouse);
-
-    /*     const numbers = Array.from(Array(10).keys());
-     */
-    const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-    const required = (value) => (value ? undefined : "Required");
-
     return (
         <Styles>
             <Fade in={true} timeout={2000}>
@@ -29,11 +20,6 @@ const HouseForm = ({ onSubmit, sent }) => {
             <Fade in={true} timeout={2000}>
                 <Typography variant="h2">Cadastrar nova casa</Typography>
             </Fade>
-            {/*
-    area: 0,
-    includesWardrobe: false,
-    description: "", */}
-
             <Form
                 onSubmit={onSubmit}
                 render={({
@@ -45,6 +31,52 @@ const HouseForm = ({ onSubmit, sent }) => {
                 }) => (
                     <Fade in={true} timeout={3000}>
                         <form onSubmit={handleSubmit}>
+                            <Typography variant="h2" gutterBottom>
+                                Endereço
+                            </Typography>
+                            <Grid container spacing={2}>
+                                <Grid item xs={6} sm={6}>
+                                    <Field
+                                        name="street"
+                                        component={TextFieldAdapter}
+                                        options={arr}
+                                        placeholder="Endereço"
+                                    />
+                                </Grid>
+                                <Grid item xs={6} sm={6}>
+                                    <Field
+                                        name="neighbourhood"
+                                        component={TextFieldAdapter}
+                                        options={arr}
+                                        placeholder="Bairro"
+                                    />
+                                </Grid>
+                                <Grid item xs={6} sm={6}>
+                                    <Field
+                                        name="city"
+                                        component={TextFieldAdapter}
+                                        options={arr}
+                                        placeholder="Cidade"
+                                    />
+                                </Grid>
+                                <Grid item xs={6} sm={6}>
+                                    <Field
+                                        name="cep"
+                                        component={TextFieldAdapter}
+                                        options={arr}
+                                        placeholder="CEP"
+                                    />
+                                </Grid>
+                                <Grid item xs={6} sm={12}>
+                                    <Field
+                                        name="rent"
+                                        component={TextFieldAdapter}
+                                        options={arr}
+                                        placeholder="Valor de aluguel"
+                                        fullWidth
+                                    />
+                                </Grid>
+                            </Grid>
                             <Grid container spacing={2}>
                                 <Grid item xs={6} sm={6}>
                                     <Field
@@ -67,7 +99,7 @@ const HouseForm = ({ onSubmit, sent }) => {
                                         name="livingRoom"
                                         component={SelectAdapter}
                                         options={arr}
-                                        placeholder="Salas"
+                                        placeholder="Salas de estar"
                                     />
                                 </Grid>
                                 <Grid item xs={6} sm={6}>
@@ -77,15 +109,19 @@ const HouseForm = ({ onSubmit, sent }) => {
                                         component={SelectAdapter}
                                         options={arr}
                                         placeholder="Estacionamentos"
-                                    />{" "}
+                                    />
                                 </Grid>
-                            </Grid>
-
-                            <Grid container spacing={2}>
-                                <Grid item>
+                                <Grid item xs={6} sm={6}>
+                                    <Field
+                                        name="area"
+                                        component={TextFieldAdapter}
+                                        options={arr}
+                                        placeholder="Area (m²)"
+                                    />
+                                </Grid>
+                                <Grid item xs={6} sm={6}>
                                     <Field
                                         name="includesWardrobe"
-                                        label="Inclui Armários"
                                         component={ToggleAdapter}
                                         labelposition="left"
                                         defaultValue={false}
@@ -96,10 +132,9 @@ const HouseForm = ({ onSubmit, sent }) => {
                             <Field
                                 name="description"
                                 multiline={true}
-                                component={TextFieldAdapter}
-                                validate={required}
                                 fullWidth
-                                className={"salve"}
+                                component={TextFieldAdapter}
+                                fullWidth
                                 placeholder="Descrição"
                             />
                             <div className="buttons">
@@ -114,7 +149,6 @@ const HouseForm = ({ onSubmit, sent }) => {
                                     Limpar
                                 </button>
                             </div>
-
                             <pre>{JSON.stringify(values, 0, 2)}</pre>
                         </form>
                     </Fade>

@@ -8,6 +8,7 @@ import Fade from "@material-ui/core/Fade";
 
 //import { commonType, defaultHouse, defaultApartment } from "./api/types";
 import HouseForm from "./components/house";
+import ApartmentForm from "./components/apartment";
 
 const SignUp = () => {
     const [sent, setSent] = useState(false);
@@ -23,11 +24,11 @@ const SignUp = () => {
 
     const getForm = (type) =>
         type === "house" ? (
-            <HouseForm onSubmit={onSubmit} sent={sent} />
+            <HouseForm onSubmit={onSubmit} isHouse={true} />
         ) : type === "apartment" ? (
-            <ApartmentForm onSubmit={onSubmit} sent={sent} />
+            <ApartmentForm onSubmit={onSubmit} isHouse={false} />
         ) : (
-            <div />
+            <></>
         );
 
     return (
@@ -51,7 +52,7 @@ const SignUp = () => {
                             </Button>
                         </Fade>
                     </Grid>
-                    <Grid item>
+                    <Grid item xs={6}>
                         <Fade timeout={3000} in={true}>
                             <Button
                                 fullWidth
