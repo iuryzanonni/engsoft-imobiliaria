@@ -10,7 +10,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { Fade, Grid, Typography } from "@material-ui/core";
 import { Form, Field } from "react-final-form";
 import { SelectAdapter, ToggleAdapter } from "./utils";
-import arr from "../api/types";
+import arr from "../pages/api/types";
 import Styles from "./styles";
 import TextField from "@material-ui/core/TextField";
 import "date-fns";

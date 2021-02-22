@@ -7,8 +7,8 @@ import Button from "@material-ui/core/Button";
 import Fade from "@material-ui/core/Fade";
 
 //import { commonType, defaultHouse, defaultApartment } from "./api/types";
-import HouseForm from "./components/house";
-import ApartmentForm from "./components/apartment";
+import HouseForm from "../components/house";
+import ApartmentForm from "../components/apartment";
 
 const SignUp = () => {
     const [sent, setSent] = useState(false);

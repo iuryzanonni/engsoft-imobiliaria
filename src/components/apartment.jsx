@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { Fade, Grid, Typography } from "@material-ui/core";
 import { Form, Field } from "react-final-form";
 import { SelectAdapter, ToggleAdapter } from "./utils";
-import { defaultHouse } from "../api/types";
+import { defaultHouse } from "../pages/api/types";
 import { cities, TextFieldAdapter } from "./utils";
-import arr from "../api/types";
+import arr from "../pages/api/types";
 import Styles from "./styles";
 
 const ApartmentForm = ({ onSubmit, sent }) => (

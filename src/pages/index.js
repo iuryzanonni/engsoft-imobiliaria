@@ -1,5 +1,6 @@
 import { useState } from "react";
-import House from "./components/houses-table";
+//import House from "./components/houses-table";
+import House from "../components/houses-table";
 
 function Home() {
     return (
