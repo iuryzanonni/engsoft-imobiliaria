@@ -39,15 +39,18 @@ function Home(props) {
         street,
         suite,
     } = props.model;
+
+    const buttonFunction = props.buttonFunction;
     const styles = useStyles();
-    const isHouseBool = isHouse ? true : false;
 
     return (
         <Card className={styles.root}>
             <Grid container justify="center" alignItems="center">
                 <CardContent>
                     <Grid item xs={2}>
-                        <Typography variant="h1">🏠</Typography>
+                        <Typography variant="h1">
+                            {!isHouse ? "🏢" : "🏠"}
+                        </Typography>
                         <Typography
                             variant="subtitle1"
                             style={{ fontWeight: "bold" }}
@@ -66,7 +69,11 @@ function Home(props) {
                             </Grid>
 
                             <Grid item xs={2}>
-                                <Button variant="outlined" color="primary">
+                                <Button
+                                    variant="outlined"
+                                    color="primary"
+                                    onClick={() => buttonFunction(id)}
+                                >
                                     Agendar
                                 </Button>
                             </Grid>
@@ -147,11 +154,11 @@ function Home(props) {
                                             Estacionamento
                                         </Typography>
                                         <Typography className={styles.font}>
-                                            {area}
+                                            {parking}
                                         </Typography>
                                     </Grid>
 
-                                    {isHouseBool && (
+                                    {!isHouse && (
                                         <Grid item xs={2}>
                                             <Typography
                                                 style={{ fontWeight: "bold" }}
@@ -165,7 +172,7 @@ function Home(props) {
                                         </Grid>
                                     )}
 
-                                    {isHouseBool && (
+                                    {!isHouse && (
                                         <Grid item xs={2}>
                                             <Typography
                                                 style={{ fontWeight: "bold" }}
@@ -174,12 +181,12 @@ function Home(props) {
                                                 Andar
                                             </Typography>
                                             <Typography className={styles.font}>
-                                                {floor}
+                                                {`${floor}º`}
                                             </Typography>
                                         </Grid>
                                     )}
 
-                                    {isHouseBool && (
+                                    {!isHouse && (
                                         <Grid item xs={2}>
                                             <Typography
                                                 style={{ fontWeight: "bold" }}
@@ -188,12 +195,14 @@ function Home(props) {
                                                 Condomínio
                                             </Typography>
                                             <Typography className={styles.font}>
-                                                {condoFee}
+                                                {`R$${parseFloat(
+                                                    condoFee
+                                                ).toFixed(2)}`}
                                             </Typography>
                                         </Grid>
                                     )}
 
-                                    {isHouseBool && (
+                                    {!isHouse && (
                                         <Grid item xs={3}>
                                             <Typography
                                                 style={{ fontWeight: "bold" }}
