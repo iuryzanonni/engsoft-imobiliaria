@@ -1,6 +1,6 @@
 
 exports.up = function(knex) {
-	return knex.schema.createTable("Visitation", function (table) {
+	return knex.schema.createTable("visitation", function (table) {
 		table.increments("id").primary();
 		table.date("dateVisit").notNullable();
 		table.integer("realEstate").notNullable();
@@ -13,5 +13,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-	return knex.schema.dropTable("Visitation");  
+	return knex.schema.dropTable("visitation");  
 };
