@@ -19,31 +19,49 @@ const useStyles = makeStyles({
 });
 
 function Home(props) {
+    const {
+        area,
+        cep,
+        city,
+        condoFee,
+        description,
+        diningRoom,
+        doorman24h,
+        floor,
+        id,
+        includesWardrobe,
+        isHouse,
+        livingRoom,
+        neighbourhood,
+        parking,
+        rent,
+        room,
+        street,
+        suite,
+    } = props.model;
     const styles = useStyles();
+    const isHouseBool = isHouse ? true : false;
 
-    const area = props.model;
-    const isHouse = true;
     return (
         <Card className={styles.root}>
             <Grid container justify="center" alignItems="center">
-                <Grid item xs={2}>
-                    <CardContent>
+                <CardContent>
+                    <Grid item xs={2}>
                         <Typography variant="h1">🏠</Typography>
                         <Typography
                             variant="subtitle1"
                             style={{ fontWeight: "bold" }}
                         >
-                            R$ 100.000,00
+                            {`R$${parseFloat(rent).toFixed(2)}`}
                         </Typography>
-                    </CardContent>
-                </Grid>
-
+                    </Grid>
+                </CardContent>
                 <Grid item xs={9}>
                     <CardContent>
                         <Grid container direction="row">
                             <Grid item xs={10}>
                                 <Typography variant="subtitle1">
-                                    Descrição
+                                    {description}
                                 </Typography>
                             </Grid>
 
@@ -55,7 +73,7 @@ function Home(props) {
 
                             <Grid item xs={12}>
                                 <Typography variant="subtitle1">
-                                    Endereço
+                                    {`${street}, ${neighbourhood}, ${city}, MG. CEP: ${cep}`}
                                 </Typography>
                             </Grid>
 
@@ -81,7 +99,7 @@ function Home(props) {
                                             Quartos
                                         </Typography>
                                         <Typography className={styles.font}>
-                                            {area}
+                                            {room}
                                         </Typography>
                                     </Grid>
 
@@ -93,7 +111,7 @@ function Home(props) {
                                             Suites
                                         </Typography>
                                         <Typography className={styles.font}>
-                                            {area}
+                                            {suite}
                                         </Typography>
                                     </Grid>
 
@@ -105,7 +123,7 @@ function Home(props) {
                                             Sala de Estar
                                         </Typography>
                                         <Typography className={styles.font}>
-                                            {area}
+                                            {livingRoom}
                                         </Typography>
                                     </Grid>
 
@@ -117,7 +135,7 @@ function Home(props) {
                                             Possui armários
                                         </Typography>
                                         <Typography className={styles.font}>
-                                            {area}
+                                            {includesWardrobe ? "Sim" : "Não"}
                                         </Typography>
                                     </Grid>
 
@@ -133,7 +151,7 @@ function Home(props) {
                                         </Typography>
                                     </Grid>
 
-                                    {isHouse && (
+                                    {isHouseBool && (
                                         <Grid item xs={2}>
                                             <Typography
                                                 style={{ fontWeight: "bold" }}
@@ -142,12 +160,12 @@ function Home(props) {
                                                 Sala de Jantar
                                             </Typography>
                                             <Typography className={styles.font}>
-                                                {area}
+                                                {diningRoom ? "Sim" : "Não"}
                                             </Typography>
                                         </Grid>
                                     )}
 
-                                    {isHouse && (
+                                    {isHouseBool && (
                                         <Grid item xs={2}>
                                             <Typography
                                                 style={{ fontWeight: "bold" }}
@@ -156,12 +174,12 @@ function Home(props) {
                                                 Andar
                                             </Typography>
                                             <Typography className={styles.font}>
-                                                {area}
+                                                {floor}
                                             </Typography>
                                         </Grid>
                                     )}
 
-                                    {isHouse && (
+                                    {isHouseBool && (
                                         <Grid item xs={2}>
                                             <Typography
                                                 style={{ fontWeight: "bold" }}
@@ -170,12 +188,12 @@ function Home(props) {
                                                 Condomínio
                                             </Typography>
                                             <Typography className={styles.font}>
-                                                {area}
+                                                {condoFee}
                                             </Typography>
                                         </Grid>
                                     )}
 
-                                    {isHouse && (
+                                    {isHouseBool && (
                                         <Grid item xs={3}>
                                             <Typography
                                                 style={{ fontWeight: "bold" }}
@@ -184,7 +202,7 @@ function Home(props) {
                                                 Portaria 24 hrs
                                             </Typography>
                                             <Typography className={styles.font}>
-                                                {area}
+                                                {doorman24h ? "Sim" : "Não"}
                                             </Typography>
                                         </Grid>
                                     )}

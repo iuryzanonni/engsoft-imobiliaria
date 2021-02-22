@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
 import Card from "../components/Card";
-import { render } from "react-dom";
+import { get } from "../api-front";
 
 function Home() {
-    let model = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+    const [properties, setProperties] = useState([]);
+    useEffect(() => {
+        setProperties([]);
+        get("properties").then((data) => {
+            setProperties(data);
+        });
+    }, []);
 
     return (
         <Grid
@@ -14,13 +20,14 @@ function Home() {
             justify="space-evenly"
             alignItems="center"
         >
-            {model.map((row, index) => {
-                return (
-                    <Grid key={index} item xs={12}>
-                        <Card model={row} />
-                    </Grid>
-                );
-            })}
+            {properties &&
+                properties.map((property, index) => {
+                    return (
+                        <Grid key={index} item xs={12}>
+                            <Card model={property} />
+                        </Grid>
+                    );
+                })}
         </Grid>
     );
 }
