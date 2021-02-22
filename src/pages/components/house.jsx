@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Fade, Grid, Typography } from "@material-ui/core";
+import { Fade, Grid, Typography} from "@material-ui/core";
 import { Form, Field } from "react-final-form";
 import { SelectAdapter, ToggleAdapter } from "./utils";
 import arr from "../api/types";
@@ -79,14 +79,16 @@ const HouseForm = ({ onSubmit, sent }) => {
                             </Grid>
                             <Grid container spacing={2}>
                                 <Grid item xs={6} sm={6}>
+                                    <label>Quartos</label>
                                     <Field
                                         name="room"
                                         component={SelectAdapter}
-                                        options={arr}
+                                        options={[{label:"Teste"},...arr]}
                                         placeholder="Quartos"
                                     />
                                 </Grid>
                                 <Grid item xs={6} sm={6}>
+                                    <label>Suites</label>
                                     <Field
                                         name="suite"
                                         component={SelectAdapter}
@@ -95,6 +97,8 @@ const HouseForm = ({ onSubmit, sent }) => {
                                     />
                                 </Grid>
                                 <Grid item xs={6} sm={6}>
+                                    <label>Sala de estar</label>
+
                                     <Field
                                         name="livingRoom"
                                         component={SelectAdapter}
@@ -103,6 +107,7 @@ const HouseForm = ({ onSubmit, sent }) => {
                                     />
                                 </Grid>
                                 <Grid item xs={6} sm={6}>
+                                    <label>Estacionamentos</label>
                                     <Field
                                         name="parking"
                                         style={{ maxWidth: "50%" }}
