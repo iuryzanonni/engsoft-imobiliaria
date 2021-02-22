@@ -21,6 +21,7 @@ import {
     KeyboardDatePicker,
 } from "@material-ui/pickers";
 import Chip from "@material-ui/core/Chip";
+import { get } from "../api-front";
 
 const hours = [
     "8:00",
@@ -133,6 +134,7 @@ const HousesTable = ({ onSubmit, sent }) => {
 
     return (
         <div style={{ height: "50vh" }}>
+            <Button onClick={() => get("properties")}>Teste</Button>
             <DataGrid rows={rows} columns={columns} pageSize={5} />
             <Dialog
                 fullWidth
