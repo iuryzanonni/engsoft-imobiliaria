@@ -2587,3 +2587,5 @@ export const cities = [
         nome: "Wenceslau Braz",
     },
 ];
+
+export default function Utils(){}
