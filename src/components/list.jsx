@@ -137,7 +137,7 @@ const List = () => {
     const handleModalSend = () => {
         post("visitation", {
             dateVisit: selectedDate.toJSON().split("T")[0],
-            realState: currentId,
+            realEstate: currentId,
             hourVisit: selectedHour,
             name: currentName,
             cpf: currentCPF,
