@@ -21,11 +21,12 @@ const SignUp = () => {
         await sleep(1000);
         const isHouse = type === "house" ? true : false;
         let data = { isHouse: isHouse, ...values };
-        data.room = data.room && data.room.value;
-        data.suite = data.suite && data.suite.value;
-        data.parking = data.parking && data.parking.value;
-        data.livingRoom = data.livingRoom && data.livingRoom.value;
-        data.diningRoom = data.diningRoom && data.diningRoom.value;
+        console.log(data);
+        data.room = data.room?.value;
+        data.suite = data.suite?.value;
+        data.parking = data.parking?.value;
+        data.livingRoom = data.livingRoom?.value;
+        data.diningRoom = data.diningRoom?.value;
 
         post("properties", data);
     };
@@ -44,8 +45,8 @@ const SignUp = () => {
                 isHouse={false}
             />
         ) : (
-            <></>
-        );
+                    <></>
+                );
 
     return (
         <>

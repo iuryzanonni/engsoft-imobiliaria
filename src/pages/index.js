@@ -5,7 +5,7 @@ import List from "../components/list";
 function Home() {
     return (
         <>
-            <Header></Header>
+            <Header />
             <h1>Home - Imobiliária</h1>
             <List />
         </>

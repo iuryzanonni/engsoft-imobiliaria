@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "https://engsoft-imobiliaria.vercel.app/api";
+const baseUrl = "http://localhost:3000/api";
 
 const get = async (address, params = null) => {
     let query = "?";
@@ -21,7 +21,7 @@ const post = async (address, data) => {
     axios
         .post(url, data)
         .then(function (response) {
-            console.error(response);
+            console.log(response);
         })
         .catch(function (error) {
             console.error(error);
