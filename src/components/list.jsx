@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import Card from "../components/Card";
-import { get } from "../api-front";
+import Card from "./Card";
+import { get, post } from "../api-front";
 import { DataGrid, isArray } from "@material-ui/data-grid";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -10,9 +10,8 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { Fade, Grid, Typography } from "@material-ui/core";
 import { Form, Field } from "react-final-form";
-import { SelectAdapter, ToggleAdapter } from "../components/utils";
-import arr from "./api/types";
-import Header from '../components/Header';
+import { SelectAdapter, ToggleAdapter } from "./utils";
+import arr from "../pages/api/types";
 import TextField from "@material-ui/core/TextField";
 import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
@@ -37,19 +36,7 @@ const hours = [
     "18:00",
 ];
 
-let isSelected = {
-    "8:00": false,
-    "9:00": false,
-    "10:00": false,
-    "11:00": false,
-    "12:00": false,
-    "13:00": false,
-    "14:00": false,
-    "15:00": false,
-    "16:00": false,
-    "17:00": false,
-    "18:00": false,
-};
+let isSelected;
 
 const resetIsSelected = () =>
     (isSelected = {
@@ -65,20 +52,9 @@ const resetIsSelected = () =>
         "17:00": false,
         "18:00": false,
     });
+resetIsSelected();
 
-let isOcuped = {
-    "8:00": false,
-    "9:00": false,
-    "10:00": false,
-    "11:00": false,
-    "12:00": false,
-    "13:00": false,
-    "14:00": false,
-    "15:00": false,
-    "16:00": false,
-    "17:00": false,
-    "18:00": false,
-};
+let isOcuped;
 
 const resetIsOcuped = () =>
     (isOcuped = {
@@ -94,22 +70,34 @@ const resetIsOcuped = () =>
         "17:00": false,
         "18:00": false,
     });
+resetIsOcuped();
 
 const TextFieldAdapter = ({ input, meta, ...rest }) => (
     <TextField {...input} {...rest} />
 );
 
-function Home() {
+const List = () => {
     const [properties, setProperties] = useState([]);
     const [open, setOpen] = useState(false);
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [ocupedHours, setOcupedHours] = useState([]);
     const [showHours, setShowHours] = useState(false);
     const [currentId, setCurrentId] = useState("");
+    const [currentName, setCurrentName] = useState("");
+    const [currentCPF, setCurrentCPF] = useState("");
     const [loadingHours, SetLoadingHours] = useState(false);
     const [selectedHours, setSelectedHours] = useState(isSelected);
     const [selectedHour, setSelectedHour] = useState("");
     const [isHourSelected, setIsHourSelected] = useState(false);
+
+    useEffect(() => {
+        // setProperties(["aa", "bb"]);
+        // setShowHours(false);
+
+        get("properties").then((data) => {
+            setProperties(data);
+        });
+    }, []);
 
     const handleModalOpen = (id) => {
         setCurrentId(id);
@@ -121,6 +109,8 @@ function Home() {
         setSelectedDate(new Date());
         setShowHours(false);
         setCurrentId("");
+        setCurrentName("");
+        setCurrentCPF("");
         setSelectedHour("");
         setIsHourSelected(false);
         resetIsSelected();
@@ -132,7 +122,10 @@ function Home() {
     const handleDateChange = (date) => {
         setSelectedDate(date);
         SetLoadingHours(true);
-        get("visitation").then((data) => {
+        get("visitation", {
+            id: currentId,
+            date: date.toJSON().split("T")[0],
+        }).then((data) => {
             resetIsOcuped();
             data.forEach((x) => (isOcuped[x.hourVisit.slice(0, -3)] = true));
             setOcupedHours(isOcuped);
@@ -142,7 +135,13 @@ function Home() {
     };
 
     const handleModalSend = () => {
-        //setOcupedTimes([])
+        post("visitation", {
+            dateVisit: selectedDate.toJSON().split("T")[0],
+            realState: currentId,
+            hourVisit: selectedHour,
+            name: currentName,
+            cpf: currentCPF,
+        });
         handleModalClose();
     };
 
@@ -154,18 +153,8 @@ function Home() {
         setIsHourSelected(true);
     };
 
-    useEffect(() => {
-        // setProperties(["aa", "bb"]);
-        // setShowHours(false);
-
-        get("properties").then((data) => {
-            setProperties(data);
-        });
-    }, []);
-
     return (
         <>
-            <Header/>
             <Grid
                 container
                 spacing={2}
@@ -198,7 +187,7 @@ function Home() {
                 <DialogContent>
                     <Grid container spacing={1}>
                         <Grid item xs={4} sm={4}>
-                            <TextField label="Nome"/>
+                            <TextField label="Nome" />
                         </Grid>
 
                         <Grid item xs={4} sm={4}>
@@ -211,6 +200,8 @@ function Home() {
                                     format="dd/MM/yyyy"
                                     value={selectedDate}
                                     onChange={handleDateChange}
+                                    label="Data da visita"
+                                    disablePast
                                 />
                             </MuiPickersUtilsProvider>
                         </Grid>
@@ -266,6 +257,6 @@ function Home() {
             </Dialog>
         </>
     );
-}
+};
 
-export default Home;
+export default List;

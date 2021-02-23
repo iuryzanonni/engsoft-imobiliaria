@@ -8,7 +8,7 @@ import Fade from "@material-ui/core/Fade";
 import { post } from "../api-front/index";
 import HouseForm from "../components/house";
 import ApartmentForm from "../components/apartment";
-import Header from '../components/Header';
+import Header from "../components/Header";
 
 const SignUp = () => {
     const [type, setType] = useState("");
@@ -25,7 +25,7 @@ const SignUp = () => {
         data.livingRoom = data.livingRoom.value;
         data.diningRoom = data.diningRoom.value;
 
-        post(data);
+        post("properties", data);
     };
 
     const getForm = (type) =>
@@ -39,7 +39,7 @@ const SignUp = () => {
 
     return (
         <>
-            <Header/>
+            <Header />
             <Container maxWidth="sm">
                 <MuiPaper style={{ padding: 30 }} elevation={1}>
                     <Fade timeout={1000} in={true}>
@@ -55,7 +55,10 @@ const SignUp = () => {
                     <Grid container style={{ marginBottom: 30 }}>
                         <Grid item xs={6}>
                             <Fade timeout={3000} in={true}>
-                                <Button fullWidth onClick={() => setType("house")}>
+                                <Button
+                                    fullWidth
+                                    onClick={() => setType("house")}
+                                >
                                     Casa
                                 </Button>
                             </Fade>
