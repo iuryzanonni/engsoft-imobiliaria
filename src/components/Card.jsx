@@ -55,7 +55,7 @@ function Home(props) {
                             variant="subtitle1"
                             style={{ fontWeight: "bold" }}
                         >
-                            {`R$ ${parseFloat(rent).toFixed(2)}`}
+                            {`R$${parseFloat(rent).toFixed(2)}`}
                         </Typography>
                     </Grid>
                 </CardContent>
