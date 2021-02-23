@@ -66,6 +66,35 @@ const resetIsSelected = () =>
         "18:00": false,
     });
 
+let isOcuped = {
+    "8:00": false,
+    "9:00": false,
+    "10:00": false,
+    "11:00": false,
+    "12:00": false,
+    "13:00": false,
+    "14:00": false,
+    "15:00": false,
+    "16:00": false,
+    "17:00": false,
+    "18:00": false,
+};
+
+const resetIsOcuped = () =>
+    (isOcuped = {
+        "8:00": false,
+        "9:00": false,
+        "10:00": false,
+        "11:00": false,
+        "12:00": false,
+        "13:00": false,
+        "14:00": false,
+        "15:00": false,
+        "16:00": false,
+        "17:00": false,
+        "18:00": false,
+    });
+
 const TextFieldAdapter = ({ input, meta, ...rest }) => (
     <TextField {...input} {...rest} />
 );
@@ -74,7 +103,7 @@ function Home() {
     const [properties, setProperties] = useState([]);
     const [open, setOpen] = useState(false);
     const [selectedDate, setSelectedDate] = useState(new Date());
-    const [ocupedTimes, setOcupedTimes] = useState([]);
+    const [ocupedHours, setOcupedHours] = useState([]);
     const [showHours, setShowHours] = useState(false);
     const [currentId, setCurrentId] = useState("");
     const [loadingHours, SetLoadingHours] = useState(false);
@@ -90,20 +119,23 @@ function Home() {
     const handleModalClose = () => {
         setOpen(false);
         setSelectedDate(new Date());
-        setOcupedTimes([]);
         setShowHours(false);
         setCurrentId("");
         setSelectedHour("");
         setIsHourSelected(false);
         resetIsSelected();
         setSelectedHours(isSelected);
+        resetIsOcuped();
+        setOcupedHours(isOcuped);
     };
 
     const handleDateChange = (date) => {
         setSelectedDate(date);
         SetLoadingHours(true);
-        get("properties").then((data) => {
-            //setOcupedTimes(data)
+        get("visitation").then((data) => {
+            resetIsOcuped();
+            data.forEach((x) => (isOcuped[x.hourVisit.slice(0, -3)] = true));
+            setOcupedHours(isOcuped);
             setShowHours(true);
             SetLoadingHours(false);
         });
@@ -186,22 +218,32 @@ function Home() {
                     {showHours && (
                         <Grid container spacing={1} justify="space-evenly">
                             {hours.map((hour) => {
-                                return (
-                                    <Grid item xs={1}>
-                                        <Chip
-                                            label={hour}
-                                            clickable
-                                            onClick={() =>
-                                                handleChipClick(hour)
-                                            }
-                                            color={
-                                                isSelected[hour]
-                                                    ? "primary"
-                                                    : ""
-                                            }
-                                        />
-                                    </Grid>
-                                );
+                                if (!isOcuped[hour])
+                                    return (
+                                        <Grid item xs={1}>
+                                            <Chip
+                                                label={hour}
+                                                clickable
+                                                onClick={() =>
+                                                    handleChipClick(hour)
+                                                }
+                                                color={
+                                                    isSelected[hour]
+                                                        ? "primary"
+                                                        : "default"
+                                                }
+                                            />
+                                        </Grid>
+                                    );
+                                else
+                                    return (
+                                        <Grid item xs={1}>
+                                            <Chip
+                                                label={hour}
+                                                color={"secondary"}
+                                            />
+                                        </Grid>
+                                    );
                             })}
                         </Grid>
                     )}

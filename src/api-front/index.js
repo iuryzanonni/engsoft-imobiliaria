@@ -2,8 +2,17 @@ import axios from "axios";
 
 const baseUrl = "https://engsoft-imobiliaria.vercel.app/api";
 
-const get = async (address) => {
-    return axios.get(`${baseUrl}/${address}`).then((res) => {
+const get = async (address, params = {}) => {
+    let query = "?";
+    for (const key in params) {
+        query += `${key}=${params[key]}`;
+    }
+
+    query = query.slice(0, -1);
+    console.log(query);
+    console.log(`${baseUrl}/${address}${query}`);
+
+    return axios.get(`${baseUrl}/${address}${query}`).then((res) => {
         console.log(res);
         return res ? res.data : null;
     });
