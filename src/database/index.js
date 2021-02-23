@@ -1,7 +1,7 @@
 import connectionDB from "../../knexfile.js";
 const knex = require("knex")(connectionDB.development);
 
-let cachedConnection;
+var cachedConnection;
 
 export const getDatabaseConnector = () => {
   if (cachedConnection) {

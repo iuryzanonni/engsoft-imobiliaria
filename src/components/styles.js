@@ -1,4 +1,3 @@
-//import { render } from "react-dom";
 import styled, { css } from "styled-components";
 
 const btn = (light, dark) => css`
@@ -35,6 +34,8 @@ const btnDefault = css`
 const btnPrimary = btn("#65eba1", "#285f8f");
 
 export default styled.div`
+    padding:0px;
+    margin:0px; 
     font-family: sans-serif;
     h1 {
         text-align: center;

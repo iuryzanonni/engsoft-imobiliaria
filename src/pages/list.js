@@ -11,8 +11,8 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { Fade, Grid, Typography } from "@material-ui/core";
 import { Form, Field } from "react-final-form";
 import { SelectAdapter, ToggleAdapter } from "../components/utils";
-import arr from "../pages/api/types";
-// import Styles from "./styles";
+import arr from "./api/types";
+import Header from '../components/Header';
 import TextField from "@material-ui/core/TextField";
 import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
@@ -155,7 +155,7 @@ function Home() {
     };
 
     useEffect(() => {
-        // setProperties([]);
+        // setProperties(["aa", "bb"]);
         // setShowHours(false);
 
         get("properties").then((data) => {
@@ -165,6 +165,7 @@ function Home() {
 
     return (
         <>
+            <Header/>
             <Grid
                 container
                 spacing={2}
@@ -197,11 +198,11 @@ function Home() {
                 <DialogContent>
                     <Grid container spacing={1}>
                         <Grid item xs={4} sm={4}>
-                            <TextField />
+                            <TextField label="Nome"/>
                         </Grid>
 
                         <Grid item xs={4} sm={4}>
-                            <TextField />
+                            <TextField label="CPF" />
                         </Grid>
 
                         <Grid item xs={4} sm={4}>
