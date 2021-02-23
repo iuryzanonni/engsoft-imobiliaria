@@ -1,12 +1,22 @@
 import database from "../../../database";
 
 async function HandlerUser(request, response) {
+    const method = request.method;
+    let resp;
     try {
-        const resp = await database.select().from("visitation");
+        const id = request.query.id;
+        const date = request.query.date;
+
+        resp = await database.select().from("visitation").where({
+            realEstate: id,
+            dateVisit: date,
+        });
+
+        console.log(method);
 
         return response.json(resp);
     } catch (error) {
-        response.json({ message: error.message });
+        return response.json({ message: error.message }).send(404);
     }
 }
 
