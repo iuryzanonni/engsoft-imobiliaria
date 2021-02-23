@@ -182,16 +182,26 @@ const List = () => {
                 onClose={handleModalClose}
             >
                 <DialogTitle id="alert-dialog-title">
-                    Registrar horário
+                    Agendar horário
                 </DialogTitle>
                 <DialogContent>
                     <Grid container spacing={1}>
                         <Grid item xs={4} sm={4}>
-                            <TextField label="Nome" />
+                            <TextField
+                                label="Nome"
+                                onChange={(event) =>
+                                    setCurrentName(event.target.value)
+                                }
+                            />
                         </Grid>
 
                         <Grid item xs={4} sm={4}>
-                            <TextField label="CPF" />
+                            <TextField
+                                label="CPF"
+                                onChange={(event) =>
+                                    setCurrentCPF(event.target.value)
+                                }
+                            />
                         </Grid>
 
                         <Grid item xs={4} sm={4}>
