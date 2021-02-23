@@ -90,7 +90,6 @@ const HousesTable = ({ onSubmit, sent }) => {
         resetIsSelected();
         isSelected[label] = true;
         setSelectedHours(isSelected);
-        console.log(label);
     };
 
     const rows = [

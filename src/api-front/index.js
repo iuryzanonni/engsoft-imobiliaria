@@ -9,11 +9,8 @@ const get = async (address, params = {}) => {
     }
 
     query = query.slice(0, -1);
-    console.log(query);
-    console.log(`${baseUrl}/${address}${query}`);
 
     return axios.get(`${baseUrl}/${address}${query}`).then((res) => {
-        console.log(res);
         return res ? res.data : null;
     });
 };
@@ -24,10 +21,10 @@ const post = async (data) => {
     axios
         .post(url, data)
         .then(function (response) {
-            console.log(response);
+            console.error(response);
         })
         .catch(function (error) {
-            console.log(error);
+            console.error(error);
         });
 };
 
