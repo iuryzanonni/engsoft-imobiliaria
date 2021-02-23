@@ -1,42 +1,34 @@
-import React from "react";
 import AppBar from "@material-ui/core/AppBar";
+import Button from "@material-ui/core/Button";
 import Toolbar from "@material-ui/core/Toolbar";
-import styled from "styled-components";
-import Link from "next/link";
+import Typography from "@material-ui/core/Typography";
+import React from "react";
 
-const Container = styled.div`
-    flex-grow: 1;
-    margin-bottom: 20px;
-`;
-
-const LinkText = styled.a`
-    font-size: 20px;
-    text-decoration: none;
-    color: inherit;
-    padding: 1em;
-    cursor: pointer;
-    background-color: #6872ab;
-    border-radius: 8px;
-    text-align: center;
-    align-items: center;
-`;
-
-function Header() {
-    return (
-        <Container>
-            <AppBar position="static">
-                <Toolbar variant="dense">
-                    <Link href="/">
-                        <LinkText>Index</LinkText>
-                    </Link>
-
-                    <Link href="/register">
-                        <LinkText>Cadastro</LinkText>
-                    </Link>
-                </Toolbar>
-            </AppBar>
-        </Container>
-    );
-}
+const Header = () => (
+    <AppBar
+        style={{
+            display: "flex",
+            padding: "5px",
+            marginBottom: "30px",
+        }}
+        position="fixed"
+    >
+        <Toolbar variant="dense">
+            <Typography style={{ fontSize: "30px" }} variant="h1">
+                Imobiliária top do Iury
+            </Typography>
+            <Button
+                style={{ margin: "0 20px 0 auto" }}
+                variant="contained"
+                href="/"
+            >
+                Home
+            </Button>
+            <Button variant="contained" href="/register">
+                Cadastrar
+            </Button>
+        </Toolbar>
+    </AppBar>
+);
 
 export default Header;

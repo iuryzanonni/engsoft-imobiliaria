@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import MuiPaper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
+import Container from "@material-ui/core/Container";
 import Fade from "@material-ui/core/Fade";
+import Grid from "@material-ui/core/Grid";
+import MuiPaper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import React, { useState } from "react";
 import { post } from "../api-front/index";
-import HouseForm from "../components/house";
 import ApartmentForm from "../components/apartment";
 import Header from "../components/Header";
+import HouseForm from "../components/house";
 
 const SignUp = () => {
     const [type, setType] = useState("");
@@ -41,7 +41,10 @@ const SignUp = () => {
         <>
             <Header />
             <Container maxWidth="sm">
-                <MuiPaper style={{ padding: 30 }} elevation={1}>
+                <MuiPaper
+                    style={{ marginTop: "90px", padding: "30px" }}
+                    elevation={5}
+                >
                     <Fade timeout={1000} in={true}>
                         <Typography
                             variant="h3"
