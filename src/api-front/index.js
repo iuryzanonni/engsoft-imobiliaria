@@ -9,4 +9,17 @@ const get = async (address) => {
     });
 };
 
-export { get };
+const post = async (data) => {
+    const url = `${baseUrl}/properties/insert`;
+
+    axios
+        .post(url, data)
+        .then(function (response) {
+            console.log("AAAA", response);
+        })
+        .catch(function (error) {
+            console.log("AAAdfgdfgA", error);
+        });
+};
+
+export { get, post };

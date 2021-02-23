@@ -5,21 +5,27 @@ import Typography from "@material-ui/core/Typography";
 import MuiPaper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Fade from "@material-ui/core/Fade";
+import { post } from "../api-front/index";
 
-//import { commonType, defaultHouse, defaultApartment } from "./api/types";
 import HouseForm from "../components/house";
 import ApartmentForm from "../components/apartment";
 
 const SignUp = () => {
-    const [sent, setSent] = useState(false);
     const [type, setType] = useState("");
 
     const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
     const onSubmit = async (values) => {
         await sleep(1000);
-        const data = JSON.stringify(values, 0, 2);
-        alert(data);
+        const isHouse = type === "house" ? true : false;
+        let data = { isHouse: isHouse, ...values };
+        data.room = data.room.value;
+        data.suite = data.suite.value;
+        data.parking = data.parking.value;
+        data.livingRoom = data.livingRoom.value;
+        data.diningRoom = data.diningRoom.value;
+
+        post(data);
     };
 
     const getForm = (type) =>
