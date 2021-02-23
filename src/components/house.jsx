@@ -1,11 +1,10 @@
+import { Fade, Grid, Typography } from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
 import React from "react";
-
-import { Fade, Grid, Typography} from "@material-ui/core";
-import { Form, Field } from "react-final-form";
-import { SelectAdapter, ToggleAdapter } from "./utils";
+import { Field, Form } from "react-final-form";
 import arr from "../pages/api/types";
 import Styles from "./styles";
-import TextField from "@material-ui/core/TextField";
+import { SelectAdapter, ToggleAdapter } from "./utils";
 
 const TextFieldAdapter = ({ input, meta, ...rest }) => (
     <TextField {...input} {...rest} />
@@ -83,7 +82,7 @@ const HouseForm = ({ onSubmit, sent }) => {
                                     <Field
                                         name="room"
                                         component={SelectAdapter}
-                                        options={[{label:"Teste"},...arr]}
+                                        options={arr}
                                         placeholder="Quartos"
                                     />
                                 </Grid>
@@ -143,7 +142,11 @@ const HouseForm = ({ onSubmit, sent }) => {
                                 placeholder="Descrição"
                             />
                             <div className="buttons">
-                                <button type="submit" disabled={submitting}>
+                                <button
+                                    onClick={() => sent(true)}
+                                    type="submit"
+                                    disabled={submitting}
+                                >
                                     Cadastrar
                                 </button>
                                 <button

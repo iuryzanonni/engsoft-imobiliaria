@@ -1,12 +1,9 @@
-import React, { useState } from "react";
-
 import { Fade, Grid, Typography } from "@material-ui/core";
-import { Form, Field } from "react-final-form";
-import { SelectAdapter, ToggleAdapter } from "./utils";
-import { defaultHouse } from "../pages/api/types";
-import { cities, TextFieldAdapter } from "./utils";
+import React from "react";
+import { Field, Form } from "react-final-form";
 import arr from "../pages/api/types";
 import Styles from "./styles";
+import { SelectAdapter, TextFieldAdapter, ToggleAdapter } from "./utils";
 
 const ApartmentForm = ({ onSubmit, sent }) => (
     <Styles>
@@ -149,7 +146,11 @@ const ApartmentForm = ({ onSubmit, sent }) => (
                             placeholder="Descrição"
                         />
                         <div className="buttons">
-                            <button type="submit" disabled={submitting}>
+                            <button
+                                onClick={() => sent(true)}
+                                type="submit"
+                                disabled={submitting}
+                            >
                                 Cadastrar
                             </button>
                             <button

@@ -3,7 +3,9 @@ import Container from "@material-ui/core/Container";
 import Fade from "@material-ui/core/Fade";
 import Grid from "@material-ui/core/Grid";
 import MuiPaper from "@material-ui/core/Paper";
+import Snackbar from "@material-ui/core/Snackbar";
 import Typography from "@material-ui/core/Typography";
+import Alert from "@material-ui/lab/Alert";
 import React, { useState } from "react";
 import { post } from "../api-front/index";
 import ApartmentForm from "../components/apartment";
@@ -12,27 +14,35 @@ import HouseForm from "../components/house";
 
 const SignUp = () => {
     const [type, setType] = useState("");
-
+    const [isAlertOpen, setIsAlertOpen] = useState(false);
     const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
     const onSubmit = async (values) => {
         await sleep(1000);
         const isHouse = type === "house" ? true : false;
         let data = { isHouse: isHouse, ...values };
-        data.room = data.room.value;
-        data.suite = data.suite.value;
-        data.parking = data.parking.value;
-        data.livingRoom = data.livingRoom.value;
-        data.diningRoom = data.diningRoom.value;
+        data.room = data.room && data.room.value;
+        data.suite = data.suite && data.suite.value;
+        data.parking = data.parking && data.parking.value;
+        data.livingRoom = data.livingRoom && data.livingRoom.value;
+        data.diningRoom = data.diningRoom && data.diningRoom.value;
 
         post("properties", data);
     };
 
     const getForm = (type) =>
         type === "house" ? (
-            <HouseForm onSubmit={onSubmit} isHouse={true} />
+            <HouseForm
+                sent={setIsAlertOpen}
+                onSubmit={onSubmit}
+                isHouse={true}
+            />
         ) : type === "apartment" ? (
-            <ApartmentForm onSubmit={onSubmit} isHouse={false} />
+            <ApartmentForm
+                sent={setIsAlertOpen}
+                onSubmit={onSubmit}
+                isHouse={false}
+            />
         ) : (
             <></>
         );
@@ -81,6 +91,20 @@ const SignUp = () => {
                     {getForm(type)}
                 </MuiPaper>
             </Container>
+            {isAlertOpen && (
+                <Snackbar
+                    open={isAlertOpen}
+                    autoHideDuration={4000}
+                    onClose={() => setIsAlertOpen(false)}
+                >
+                    <Alert
+                        onClose={() => setIsAlertOpen(false)}
+                        severity="success"
+                    >
+                        Cadastrado com sucesso!
+                    </Alert>
+                </Snackbar>
+            )}
         </>
     );
 };
