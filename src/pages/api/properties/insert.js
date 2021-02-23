@@ -1,4 +1,3 @@
-import knexfile from "../../../../knexfile";
 import database from "../../../database";
 
 async function InsertUser(request, response) {

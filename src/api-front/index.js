@@ -24,10 +24,10 @@ const post = async (data) => {
     axios
         .post(url, data)
         .then(function (response) {
-            console.log("AAAA", response);
+            console.log(response);
         })
         .catch(function (error) {
-            console.log("AAAdfgdfgA", error);
+            console.log(error);
         });
 };
 
