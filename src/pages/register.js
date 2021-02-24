@@ -6,11 +6,12 @@ import MuiPaper from "@material-ui/core/Paper";
 import Snackbar from "@material-ui/core/Snackbar";
 import Typography from "@material-ui/core/Typography";
 import Alert from "@material-ui/lab/Alert";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { post } from "../api-front/index";
 import ApartmentForm from "../components/apartment";
 import Header from "../components/Header";
 import HouseForm from "../components/house";
+import getNeighborhoodList from './api/neighborhoodAPI';
 
 const SignUp = () => {
     const [type, setType] = useState("");
@@ -27,9 +28,28 @@ const SignUp = () => {
         data.parking = data.parking?.value;
         data.livingRoom = data.livingRoom?.value;
         data.diningRoom = data.diningRoom?.value;
+        data["neighborhood"] = selectedNeighborhood
+        console.log(data);
 
         post("properties", data);
     };
+
+    const [neighborhoodList, setNeighborhoodList] = useState([]);
+    const [selectedNeighborhood, setSelectedNeighborhood] = useState("Anchieta");
+
+    useEffect(() => {
+        getNeighborhoodList().then((resp) => {
+            if (resp.status) {
+                setNeighborhoodList(resp.neighborhoodList)
+            }
+        })
+    }, [])
+
+
+    const changeNeighborhood = (neighborhood) => {
+        console.log(neighborhood);
+        setSelectedNeighborhood(neighborhood);
+    }
 
     const getForm = (type) =>
         type === "house" ? (
@@ -37,6 +57,9 @@ const SignUp = () => {
                 sent={setIsAlertOpen}
                 onSubmit={onSubmit}
                 isHouse={true}
+                neighborhoodList={neighborhoodList}
+                changeNeighborhood={changeNeighborhood}
+                selectedNeighborhood={selectedNeighborhood}
             />
         ) : type === "apartment" ? (
             <ApartmentForm

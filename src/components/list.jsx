@@ -89,6 +89,7 @@ const List = () => {
     const [selectedHours, setSelectedHours] = useState(isSelected);
     const [selectedHour, setSelectedHour] = useState("");
     const [isHourSelected, setIsHourSelected] = useState(false);
+    const [neighborhood, setNeighborhood] = useState("");
 
     useEffect(() => {
         // setProperties(["aa", "bb"]);
@@ -165,6 +166,7 @@ const List = () => {
                 {properties &&
                     properties.map((property, index) => {
                         return (
+
                             <Grid key={index} item xs={12}>
                                 <Card
                                     model={property}

@@ -7,7 +7,7 @@ async function InsertUser(request, response) {
                 {
                     isHouse: request.body.isHouse,
                     street: request.body.street,
-                    neighbourhood: request.body.neighbourhood,
+                    neighbourhood: request.body.neighborhood,
                     city: request.body.city,
                     cep: request.body.cep,
                     rent: request.body.rent,
