@@ -1,19 +1,22 @@
-import { Fade, Grid, Typography } from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
-import React, { useEffect , useState} from "react";
+import { Fade, Grid, TextField, Typography } from "@material-ui/core";
+import React from "react";
 import { Field, Form } from "react-final-form";
 import arr from "../pages/api/types";
+import Dropdown from "./dropdown";
 import Styles from "./styles";
 import { SelectAdapter, ToggleAdapter } from "./utils";
-import Dropdown from './Dropdown';
-import { dateComparer } from "@material-ui/data-grid";
 
 const TextFieldAdapter = ({ input, meta, ...rest }) => (
     <TextField {...input} {...rest} />
 );
 
-const HouseForm = ({ onSubmit, sent ,neighborhoodList, changeNeighborhood, selectedNeighborhood}) => {
-
+const HouseForm = ({
+    onSubmit,
+    sent,
+    neighborhoodList,
+    changeNeighborhood,
+    selectedNeighborhood,
+}) => {
     return (
         <Styles>
             <Fade in={true} timeout={2000}>
@@ -45,10 +48,10 @@ const HouseForm = ({ onSubmit, sent ,neighborhoodList, changeNeighborhood, selec
                                     />
                                 </Grid>
                                 <Grid item xs={6} sm={6}>
-                                    <Dropdown 
-                                        neighborhoodList = {neighborhoodList}
-                                        handleChange = {changeNeighborhood}
-                                        value = {selectedNeighborhood}
+                                    <Dropdown
+                                        neighborhoodList={neighborhoodList}
+                                        handleChange={changeNeighborhood}
+                                        value={selectedNeighborhood}
                                     />
                                     {/* <label>Bairros</label>
                                     <Field

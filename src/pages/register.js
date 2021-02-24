@@ -1,17 +1,19 @@
-import Button from "@material-ui/core/Button";
-import Container from "@material-ui/core/Container";
-import Fade from "@material-ui/core/Fade";
-import Grid from "@material-ui/core/Grid";
+import {
+    Button,
+    Container,
+    Fade,
+    Grid,
+    Snackbar,
+    Typography,
+} from "@material-ui/core";
 import MuiPaper from "@material-ui/core/Paper";
-import Snackbar from "@material-ui/core/Snackbar";
-import Typography from "@material-ui/core/Typography";
 import Alert from "@material-ui/lab/Alert";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { post } from "../api-front/index";
 import ApartmentForm from "../components/apartment";
-import Header from "../components/Header";
+import Header from "../components/header";
 import HouseForm from "../components/house";
-import bairros from '../database/bairros';
+import bairros from "../database/bairros";
 
 const SignUp = () => {
     const [type, setType] = useState("");
@@ -38,14 +40,8 @@ const SignUp = () => {
     );
 
     useEffect(() => {
-        // getNeighborhoodList().then((resp) => {
-        // if (resp.status) {
-        // setNeighborhoodList(resp.neighborhoodList);
-        setNeighborhoodList(bairros)
-        // }
-        // });
+        setNeighborhoodList(bairros);
     }, []);
-
 
     const changeNeighborhood = (neighborhood) => {
         setSelectedNeighborhood(neighborhood);
@@ -71,8 +67,8 @@ const SignUp = () => {
                 selectedNeighborhood={selectedNeighborhood}
             />
         ) : (
-                    <></>
-                );
+            <></>
+        );
 
     return (
         <>

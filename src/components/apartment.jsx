@@ -2,11 +2,17 @@ import { Fade, Grid, Typography } from "@material-ui/core";
 import React from "react";
 import { Field, Form } from "react-final-form";
 import arr from "../pages/api/types";
+import Dropdown from "./dropdown";
 import Styles from "./styles";
 import { SelectAdapter, TextFieldAdapter, ToggleAdapter } from "./utils";
-import Dropdown from './Dropdown';
 
-const ApartmentForm = ({ onSubmit, sent, neighborhoodList, changeNeighborhood, selectedNeighborhood }) => (
+const ApartmentForm = ({
+    onSubmit,
+    sent,
+    neighborhoodList,
+    changeNeighborhood,
+    selectedNeighborhood,
+}) => (
     <Styles>
         <Fade in={true} timeout={2000}>
             <Typography variant="h1">🏙️</Typography>
@@ -31,10 +37,10 @@ const ApartmentForm = ({ onSubmit, sent, neighborhoodList, changeNeighborhood, s
                                 />
                             </Grid>
                             <Grid item xs={6} sm={6}>
-                                <Dropdown 
-                                    neighborhoodList = {neighborhoodList}
-                                    handleChange = {changeNeighborhood}
-                                    value = {selectedNeighborhood}
+                                <Dropdown
+                                    neighborhoodList={neighborhoodList}
+                                    handleChange={changeNeighborhood}
+                                    value={selectedNeighborhood}
                                 />
                             </Grid>
                             <Grid item xs={6} sm={6}>

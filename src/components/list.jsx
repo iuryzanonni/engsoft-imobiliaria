@@ -1,26 +1,22 @@
-import { useState, useEffect } from "react";
-import Card from "./Card";
-import { get, post } from "../api-front";
-import { DataGrid, isArray } from "@material-ui/data-grid";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import { Fade, Grid, Typography } from "@material-ui/core";
-import { Form, Field } from "react-final-form";
-import { SelectAdapter, ToggleAdapter } from "./utils";
-import arr from "../pages/api/types";
-import TextField from "@material-ui/core/TextField";
-import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
 import {
-    MuiPickersUtilsProvider,
-    KeyboardTimePicker,
+    Button,
+    Chip,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    Grid,
+    TextField,
+} from "@material-ui/core";
+import {
     KeyboardDatePicker,
+    MuiPickersUtilsProvider,
 } from "@material-ui/pickers";
-import Chip from "@material-ui/core/Chip";
+import "date-fns";
+import { useEffect, useState } from "react";
+import { get, post } from "../api-front";
+import Card from "./card";
 
 const hours = [
     "08:00",
@@ -72,10 +68,6 @@ const resetIsOcuped = () =>
     });
 resetIsOcuped();
 
-const TextFieldAdapter = ({ input, meta, ...rest }) => (
-    <TextField {...input} {...rest} />
-);
-
 const List = () => {
     const [properties, setProperties] = useState([]);
     const [open, setOpen] = useState(false);
@@ -89,12 +81,8 @@ const List = () => {
     const [selectedHours, setSelectedHours] = useState(isSelected);
     const [selectedHour, setSelectedHour] = useState("");
     const [isHourSelected, setIsHourSelected] = useState(false);
-    const [neighborhood, setNeighborhood] = useState("");
 
     useEffect(() => {
-        // setProperties(["aa", "bb"]);
-        // setShowHours(false);
-
         get("properties").then((data) => {
             setProperties(data);
         });
