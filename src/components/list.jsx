@@ -125,7 +125,11 @@ const List = () => {
         SetLoadingHours(true);
         get("visitation", {
             id: currentId,
-            date: date.toJSON().split("T")[0],
+            date: `${date.getFullYear()}-${
+                date.getMonth() + 1 < 10
+                    ? "0" + (date.getMonth() + 1)
+                    : date.getMonth() + 1
+            }-${date.getDate() < 10 ? "0" + date.getDate() : date.getDate()}`,
         }).then((data) => {
             resetIsOcuped();
             data.forEach((x) => (isOcuped[x.hourVisit.slice(0, -3)] = true));
@@ -137,7 +141,15 @@ const List = () => {
 
     const handleModalSend = () => {
         post("visitation", {
-            dateVisit: selectedDate.toJSON().split("T")[0],
+            dateVisit: `${selectedDate.getFullYear()}-${
+                selectedDate.getMonth() + 1 < 10
+                    ? "0" + (selectedDate.getMonth() + 1)
+                    : selectedDate.getMonth() + 1
+            }-${
+                selectedDate.getDate() < 10
+                    ? "0" + selectedDate.getDate()
+                    : selectedDate.getDate()
+            }`,
             realEstate: currentId,
             hourVisit: selectedHour,
             name: currentName,
