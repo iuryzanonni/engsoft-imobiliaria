@@ -11,7 +11,7 @@ import { post } from "../api-front/index";
 import ApartmentForm from "../components/apartment";
 import Header from "../components/Header";
 import HouseForm from "../components/house";
-import bairros from '../database/bairros.json';
+import bairros from '../database/bairros';
 
 const SignUp = () => {
     const [type, setType] = useState("");
@@ -66,6 +66,9 @@ const SignUp = () => {
                 sent={setIsAlertOpen}
                 onSubmit={onSubmit}
                 isHouse={false}
+                neighborhoodList={neighborhoodList}
+                changeNeighborhood={changeNeighborhood}
+                selectedNeighborhood={selectedNeighborhood}
             />
         ) : (
                     <></>

@@ -4,8 +4,9 @@ import { Field, Form } from "react-final-form";
 import arr from "../pages/api/types";
 import Styles from "./styles";
 import { SelectAdapter, TextFieldAdapter, ToggleAdapter } from "./utils";
+import Dropdown from './Dropdown';
 
-const ApartmentForm = ({ onSubmit, sent }) => (
+const ApartmentForm = ({ onSubmit, sent, neighborhoodList, changeNeighborhood, selectedNeighborhood }) => (
     <Styles>
         <Fade in={true} timeout={2000}>
             <Typography variant="h1">🏙️</Typography>
@@ -30,11 +31,16 @@ const ApartmentForm = ({ onSubmit, sent }) => (
                                 />
                             </Grid>
                             <Grid item xs={6} sm={6}>
-                                <Field
+                                <Dropdown 
+                                    neighborhoodList = {neighborhoodList}
+                                    handleChange = {changeNeighborhood}
+                                    value = {selectedNeighborhood}
+                                />
+                                {/* <Field
                                     name="neighbourhood"
                                     component={TextFieldAdapter}
                                     placeholder="Bairro"
-                                />
+                                /> */}
                             </Grid>
                             <Grid item xs={6} sm={6}>
                                 <Field
@@ -162,7 +168,7 @@ const ApartmentForm = ({ onSubmit, sent }) => (
                             </button>
                         </div>
 
-                        <pre>{JSON.stringify(values, 0, 2)}</pre>
+                        {/* <pre>{JSON.stringify(values, 0, 2)}</pre> */}
                     </form>
                 </Fade>
             )}

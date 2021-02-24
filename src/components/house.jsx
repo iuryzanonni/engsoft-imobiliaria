@@ -164,7 +164,7 @@ const HouseForm = ({ onSubmit, sent ,neighborhoodList, changeNeighborhood, selec
                                     Limpar
                                 </button>
                             </div>
-                            <pre>{JSON.stringify(values, 0, 2)}</pre>
+                            {/* <pre>{JSON.stringify(values, 0, 2)}</pre> */}
                         </form>
                     </Fade>
                 )}
