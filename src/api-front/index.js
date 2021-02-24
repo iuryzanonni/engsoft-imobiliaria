@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:3000/api";
-// const baseUrl = "https://engsoft-imobiliaria.vercel.app/api";
+const baseUrl = "https://engsoft-imobiliaria.vercel.app/api";
 
 const get = async (address, params = null) => {
     let query = "?";
