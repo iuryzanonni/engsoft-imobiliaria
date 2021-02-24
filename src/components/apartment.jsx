@@ -36,11 +36,6 @@ const ApartmentForm = ({ onSubmit, sent, neighborhoodList, changeNeighborhood, s
                                     handleChange = {changeNeighborhood}
                                     value = {selectedNeighborhood}
                                 />
-                                {/* <Field
-                                    name="neighbourhood"
-                                    component={TextFieldAdapter}
-                                    placeholder="Bairro"
-                                /> */}
                             </Grid>
                             <Grid item xs={6} sm={6}>
                                 <Field
