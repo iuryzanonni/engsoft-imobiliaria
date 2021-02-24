@@ -11,7 +11,7 @@ import { post } from "../api-front/index";
 import ApartmentForm from "../components/apartment";
 import Header from "../components/Header";
 import HouseForm from "../components/house";
-import getNeighborhoodList from './api/neighborhoodAPI';
+import getNeighborhoodList from "./api/neighborhoodAPI";
 
 const SignUp = () => {
     const [type, setType] = useState("");
@@ -22,34 +22,32 @@ const SignUp = () => {
         await sleep(1000);
         const isHouse = type === "house" ? true : false;
         let data = { isHouse: isHouse, ...values };
-        console.log(data);
         data.room = data.room?.value;
         data.suite = data.suite?.value;
         data.parking = data.parking?.value;
         data.livingRoom = data.livingRoom?.value;
         data.diningRoom = data.diningRoom?.value;
-        data["neighborhood"] = selectedNeighborhood
-        console.log(data);
+        data["neighborhood"] = selectedNeighborhood;
 
         post("properties", data);
     };
 
     const [neighborhoodList, setNeighborhoodList] = useState([]);
-    const [selectedNeighborhood, setSelectedNeighborhood] = useState("Anchieta");
+    const [selectedNeighborhood, setSelectedNeighborhood] = useState(
+        "Anchieta"
+    );
 
     useEffect(() => {
         getNeighborhoodList().then((resp) => {
             if (resp.status) {
-                setNeighborhoodList(resp.neighborhoodList)
+                setNeighborhoodList(resp.neighborhoodList);
             }
-        })
-    }, [])
-
+        });
+    }, []);
 
     const changeNeighborhood = (neighborhood) => {
-        console.log(neighborhood);
         setSelectedNeighborhood(neighborhood);
-    }
+    };
 
     const getForm = (type) =>
         type === "house" ? (
@@ -68,8 +66,8 @@ const SignUp = () => {
                 isHouse={false}
             />
         ) : (
-                    <></>
-                );
+            <></>
+        );
 
     return (
         <>

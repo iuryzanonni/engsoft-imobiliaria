@@ -23,8 +23,8 @@ import {
 import Chip from "@material-ui/core/Chip";
 
 const hours = [
-    "8:00",
-    "9:00",
+    "08:00",
+    "09:00",
     "10:00",
     "11:00",
     "12:00",
@@ -40,8 +40,8 @@ let isSelected;
 
 const resetIsSelected = () =>
     (isSelected = {
-        "8:00": false,
-        "9:00": false,
+        "08:00": false,
+        "09:00": false,
         "10:00": false,
         "11:00": false,
         "12:00": false,
@@ -58,8 +58,8 @@ let isOcuped;
 
 const resetIsOcuped = () =>
     (isOcuped = {
-        "8:00": false,
-        "9:00": false,
+        "08:00": false,
+        "09:00": false,
         "10:00": false,
         "11:00": false,
         "12:00": false,
@@ -166,7 +166,6 @@ const List = () => {
                 {properties &&
                     properties.map((property, index) => {
                         return (
-
                             <Grid key={index} item xs={12}>
                                 <Card
                                     model={property}

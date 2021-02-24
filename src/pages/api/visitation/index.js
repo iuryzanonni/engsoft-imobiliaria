@@ -12,8 +12,6 @@ async function HandlerUser(request, response) {
             dateVisit: date,
         });
 
-        console.log(method);
-
         return response.json(resp);
     } catch (error) {
         return response.json({ message: error.message }).send(404);
