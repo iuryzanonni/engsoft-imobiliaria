@@ -11,7 +11,7 @@ import { post } from "../api-front/index";
 import ApartmentForm from "../components/apartment";
 import Header from "../components/Header";
 import HouseForm from "../components/house";
-import getNeighborhoodList from "./api/neighborhoodAPI";
+import bairros from '../database/bairros.json';
 
 const SignUp = () => {
     const [type, setType] = useState("");
@@ -38,12 +38,14 @@ const SignUp = () => {
     );
 
     useEffect(() => {
-        getNeighborhoodList().then((resp) => {
-            if (resp.status) {
-                setNeighborhoodList(resp.neighborhoodList);
-            }
-        });
+        // getNeighborhoodList().then((resp) => {
+        // if (resp.status) {
+        // setNeighborhoodList(resp.neighborhoodList);
+        setNeighborhoodList(bairros)
+        // }
+        // });
     }, []);
+
 
     const changeNeighborhood = (neighborhood) => {
         setSelectedNeighborhood(neighborhood);
@@ -66,8 +68,8 @@ const SignUp = () => {
                 isHouse={false}
             />
         ) : (
-            <></>
-        );
+                    <></>
+                );
 
     return (
         <>
