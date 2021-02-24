@@ -96,3 +96,4 @@ export default Object.keys(arr).map((value) => ({
     value,
     label: arr[value],
 }));
+

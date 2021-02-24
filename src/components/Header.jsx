@@ -15,7 +15,7 @@ const Header = () => (
     >
         <Toolbar variant="dense">
             <Typography style={{ fontSize: "30px" }} variant="h1">
-                Imobiliária top do Iury
+                Imobiliária
             </Typography>
             <Button
                 style={{ margin: "0 20px 0 auto" }}

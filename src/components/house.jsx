@@ -1,16 +1,19 @@
 import { Fade, Grid, Typography } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
-import React from "react";
+import React, { useEffect , useState} from "react";
 import { Field, Form } from "react-final-form";
 import arr from "../pages/api/types";
 import Styles from "./styles";
 import { SelectAdapter, ToggleAdapter } from "./utils";
+import Dropdown from './Dropdown';
+import { dateComparer } from "@material-ui/data-grid";
 
 const TextFieldAdapter = ({ input, meta, ...rest }) => (
     <TextField {...input} {...rest} />
 );
 
-const HouseForm = ({ onSubmit, sent }) => {
+const HouseForm = ({ onSubmit, sent ,neighborhoodList, changeNeighborhood, selectedNeighborhood}) => {
+
     return (
         <Styles>
             <Fade in={true} timeout={2000}>
@@ -38,23 +41,27 @@ const HouseForm = ({ onSubmit, sent }) => {
                                     <Field
                                         name="street"
                                         component={TextFieldAdapter}
-                                        options={arr}
                                         placeholder="Endereço"
                                     />
                                 </Grid>
                                 <Grid item xs={6} sm={6}>
-                                    <Field
-                                        name="neighbourhood"
-                                        component={TextFieldAdapter}
-                                        options={arr}
-                                        placeholder="Bairro"
+                                    <Dropdown 
+                                        neighborhoodList = {neighborhoodList}
+                                        handleChange = {changeNeighborhood}
+                                        value = {selectedNeighborhood}
                                     />
+                                    {/* <label>Bairros</label>
+                                    <Field
+                                        name="bairro"
+                                        component={SelectAdapter}
+                                        options={bairros}
+                                        placeholder="Quartos"
+                                    /> */}
                                 </Grid>
                                 <Grid item xs={6} sm={6}>
                                     <Field
                                         name="city"
                                         component={TextFieldAdapter}
-                                        options={arr}
                                         placeholder="Cidade"
                                     />
                                 </Grid>

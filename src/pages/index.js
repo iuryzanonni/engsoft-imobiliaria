@@ -1,4 +1,3 @@
-import House from "../components/houses-table";
 import Header from "../components/Header";
 import List from "../components/list";
 
